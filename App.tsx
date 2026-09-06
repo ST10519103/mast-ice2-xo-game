@@ -1,5 +1,7 @@
 import { useState } from 'react'; 
 
+  
+
 import { 
 
   View, 
@@ -12,7 +14,7 @@ import {
 
   StyleSheet, 
 
-  TouchableHighlight, 
+  TouchableHighlight 
 
 } from 'react-native'; 
 
@@ -20,7 +22,11 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native'; 
 
+  
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
+
+  
 
   
 
@@ -28,11 +34,17 @@ const Stack = createNativeStackNavigator();
 
   
 
+  
+
 export default function App() { 
+
+  
 
   return ( 
 
     <NavigationContainer> 
+
+  
 
       <Stack.Navigator initialRouteName="Home"> 
 
@@ -60,15 +72,23 @@ export default function App() {
 
       </Stack.Navigator> 
 
+  
+
     </NavigationContainer> 
 
   ); 
+
+  
 
 } 
 
   
 
+  
+
 function PlayerScreen({ navigation }: any) { 
+
+  
 
   const [player1, setPlayer1] = useState(''); 
 
@@ -77,6 +97,8 @@ function PlayerScreen({ navigation }: any) {
   
 
   return ( 
+
+  
 
     <View style={styles.container}> 
 
@@ -124,13 +146,17 @@ function PlayerScreen({ navigation }: any) {
 
         onPress={() => { 
 
+  
+
           navigation.navigate('Game', { 
 
             player1: player1, 
 
-            player2: player2, 
+            player2: player2 
 
           }); 
+
+  
 
         }} 
 
@@ -140,13 +166,21 @@ function PlayerScreen({ navigation }: any) {
 
     </View> 
 
+  
+
   ); 
+
+  
 
 } 
 
   
 
+  
+
 function GameScreen({ route }: any) { 
+
+  
 
   const { player1, player2 } = route.params; 
 
@@ -156,17 +190,105 @@ function GameScreen({ route }: any) {
 
   
 
+  
+
+  const [block1, setBlock1] = useState(0); 
+
+  const [block2, setBlock2] = useState(0); 
+
+  const [block3, setBlock3] = useState(0); 
+
+  const [block4, setBlock4] = useState(0); 
+
+  const [block5, setBlock5] = useState(0); 
+
+  const [block6, setBlock6] = useState(0); 
+
+  const [block7, setBlock7] = useState(0); 
+
+  const [block8, setBlock8] = useState(0); 
+
+  const [block9, setBlock9] = useState(0); 
+
+  
+
+  
+
+  let block1Content = ''; 
+
+  
+
+  if (block1 === 1) { 
+
+  
+
+    block1Content = 'X'; 
+
+  
+
+  } else if (block1 === 2) { 
+
+  
+
+    block1Content = 'O'; 
+
+  
+
+  } 
+
+  
+
+  
+
   const handlePress = (index: number) => { 
+
+  
 
     console.log(`Cell ${index} pressed`); 
 
+  
+
+    if (index === 0) { 
+
+  
+
+      if (player1Turn) { 
+
+  
+
+        setBlock1(1); 
+
+  
+
+      } else { 
+
+  
+
+        setBlock1(2); 
+
+  
+
+      } 
+
+  
+
+    } 
+
+  
+
     setPlayer1Turn(!player1Turn); 
+
+  
 
   }; 
 
   
 
+  
+
   return ( 
+
+  
 
     <View style={styles.container}> 
 
@@ -180,11 +302,19 @@ function GameScreen({ route }: any) {
 
   
 
+  
+
       <Text style={styles.turnText}> 
 
-        {player1Turn ? `${player1}'s Turn` : `${player2}'s Turn`} 
+        {player1Turn 
+
+          ? `${player1}'s Turn` 
+
+          : `${player2}'s Turn`} 
 
       </Text> 
+
+  
 
   
 
@@ -200,9 +330,19 @@ function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}></Text> 
+  
+
+          <Text style={styles.cellText}> 
+
+            {block1Content} 
+
+          </Text> 
+
+  
 
         </TouchableHighlight> 
+
+  
 
   
 
@@ -214,9 +354,15 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
 
+  
+
         </TouchableHighlight> 
+
+  
 
   
 
@@ -228,13 +374,19 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
+
+  
 
         </TouchableHighlight> 
 
   
 
       </View> 
+
+  
 
   
 
@@ -250,9 +402,15 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
 
+  
+
         </TouchableHighlight> 
+
+  
 
   
 
@@ -264,9 +422,15 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
 
+  
+
         </TouchableHighlight> 
+
+  
 
   
 
@@ -278,13 +442,19 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
+
+  
 
         </TouchableHighlight> 
 
   
 
       </View> 
+
+  
 
   
 
@@ -300,9 +470,15 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
 
+  
+
         </TouchableHighlight> 
+
+  
 
   
 
@@ -314,9 +490,15 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
 
+  
+
         </TouchableHighlight> 
+
+  
 
   
 
@@ -328,7 +510,11 @@ function GameScreen({ route }: any) {
 
         > 
 
+  
+
           <Text style={styles.cellText}></Text> 
+
+  
 
         </TouchableHighlight> 
 
@@ -340,13 +526,21 @@ function GameScreen({ route }: any) {
 
     </View> 
 
+  
+
   ); 
+
+  
 
 } 
 
   
 
+  
+
 const styles = StyleSheet.create({ 
+
+  
 
   container: { 
 
@@ -358,7 +552,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: '#fff', 
 
-    padding: 16, 
+    padding: 16 
 
   }, 
 
@@ -370,7 +564,7 @@ const styles = StyleSheet.create({
 
     fontWeight: 'bold', 
 
-    marginVertical: 12, 
+    marginVertical: 12 
 
   }, 
 
@@ -380,7 +574,7 @@ const styles = StyleSheet.create({
 
     fontSize: 18, 
 
-    marginBottom: 15, 
+    marginBottom: 15 
 
   }, 
 
@@ -398,7 +592,7 @@ const styles = StyleSheet.create({
 
     marginVertical: 8, 
 
-    width: '80%', 
+    width: '80%' 
 
   }, 
 
@@ -406,7 +600,7 @@ const styles = StyleSheet.create({
 
   row: { 
 
-    flexDirection: 'row', 
+    flexDirection: 'row' 
 
   }, 
 
@@ -426,7 +620,7 @@ const styles = StyleSheet.create({
 
     alignItems: 'center', 
 
-    margin: 2, 
+    margin: 2 
 
   }, 
 
@@ -436,8 +630,10 @@ const styles = StyleSheet.create({
 
     fontSize: 40, 
 
-    fontWeight: 'bold', 
+    fontWeight: 'bold' 
 
-  }, 
+  } 
+
+  
 
 }); 
