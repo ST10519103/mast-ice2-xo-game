@@ -214,6 +214,14 @@ export default function GameScreen({ route }: any) {
 
   
 
+  const boardFull = blocks.every((block) => block !== ''); 
+
+  
+
+  const draw = boardFull && winner === ''; 
+
+  
+
   return ( 
 
     <View style={styles.container}> 
@@ -228,15 +236,19 @@ export default function GameScreen({ route }: any) {
 
   
 
-      <Text style={styles.turnText}> 
+      {!winner && !draw && ( 
 
-        {player1Turn 
+        <Text style={styles.turnText}> 
 
-          ? `${player1}'s Turn` 
+          {player1Turn 
 
-          : `${player2}'s Turn`} 
+            ? `${player1}'s Turn` 
 
-      </Text> 
+            : `${player2}'s Turn`} 
+
+        </Text> 
+
+      )} 
 
   
 
@@ -253,6 +265,8 @@ export default function GameScreen({ route }: any) {
             style={styles.cell} 
 
             onPress={() => handlePress(0)} 
+
+            disabled={winner !== '' || draw} 
 
           > 
 
@@ -272,6 +286,8 @@ export default function GameScreen({ route }: any) {
 
             onPress={() => handlePress(1)} 
 
+            disabled={winner !== '' || draw} 
+
           > 
 
             <Text style={styles.cellText}> 
@@ -289,6 +305,8 @@ export default function GameScreen({ route }: any) {
             style={styles.cell} 
 
             onPress={() => handlePress(2)} 
+
+            disabled={winner !== '' || draw} 
 
           > 
 
@@ -316,6 +334,8 @@ export default function GameScreen({ route }: any) {
 
             onPress={() => handlePress(3)} 
 
+            disabled={winner !== '' || draw} 
+
           > 
 
             <Text style={styles.cellText}> 
@@ -334,6 +354,8 @@ export default function GameScreen({ route }: any) {
 
             onPress={() => handlePress(4)} 
 
+            disabled={winner !== '' || draw} 
+
           > 
 
             <Text style={styles.cellText}> 
@@ -351,6 +373,8 @@ export default function GameScreen({ route }: any) {
             style={styles.cell} 
 
             onPress={() => handlePress(5)} 
+
+            disabled={winner !== '' || draw} 
 
           > 
 
@@ -378,6 +402,8 @@ export default function GameScreen({ route }: any) {
 
             onPress={() => handlePress(6)} 
 
+            disabled={winner !== '' || draw} 
+
           > 
 
             <Text style={styles.cellText}> 
@@ -396,6 +422,8 @@ export default function GameScreen({ route }: any) {
 
             onPress={() => handlePress(7)} 
 
+            disabled={winner !== '' || draw} 
+
           > 
 
             <Text style={styles.cellText}> 
@@ -413,6 +441,8 @@ export default function GameScreen({ route }: any) {
             style={styles.cell} 
 
             onPress={() => handlePress(8)} 
+
+            disabled={winner !== '' || draw} 
 
           > 
 
@@ -436,7 +466,7 @@ export default function GameScreen({ route }: any) {
 
       {winner === 'X' && ( 
 
-        <Text style={styles.winnerText}> 
+        <Text style={styles.resultText}> 
 
           {player1} Wins! 
 
@@ -448,9 +478,21 @@ export default function GameScreen({ route }: any) {
 
       {winner === 'O' && ( 
 
-        <Text style={styles.winnerText}> 
+        <Text style={styles.resultText}> 
 
           {player2} Wins! 
+
+        </Text> 
+
+      )} 
+
+  
+
+      {draw && ( 
+
+        <Text style={styles.resultText}> 
+
+          It's a Draw! 
 
         </Text> 
 
@@ -508,7 +550,7 @@ const styles = StyleSheet.create({
 
   
 
-  winnerText: { 
+  resultText: { 
 
     fontSize: 24, 
 
