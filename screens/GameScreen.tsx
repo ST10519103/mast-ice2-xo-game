@@ -1,6 +1,16 @@
 import { useState } from 'react'; 
 
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'; 
+import { 
+
+  View, 
+
+  Text, 
+
+  StyleSheet, 
+
+  TouchableHighlight, 
+
+} from 'react-native'; 
 
   
 
@@ -14,225 +24,55 @@ export default function GameScreen({ route }: any) {
 
   
 
-  const [block1, setBlock1] = useState(0); 
+  const [blocks, setBlocks] = useState([ 
 
-  const [block2, setBlock2] = useState(0); 
+    '', 
 
-  const [block3, setBlock3] = useState(0); 
+    '', 
 
-  const [block4, setBlock4] = useState(0); 
+    '', 
 
-  const [block5, setBlock5] = useState(0); 
+    '', 
 
-  const [block6, setBlock6] = useState(0); 
+    '', 
 
-  const [block7, setBlock7] = useState(0); 
+    '', 
 
-  const [block8, setBlock8] = useState(0); 
+    '', 
 
-  const [block9, setBlock9] = useState(0); 
+    '', 
 
-  
-
-  let block1Content = ''; 
-
-  let block2Content = ''; 
-
-  let block3Content = ''; 
-
-  let block4Content = ''; 
-
-  let block5Content = ''; 
-
-  let block6Content = ''; 
-
-  let block7Content = ''; 
-
-  let block8Content = ''; 
-
-  let block9Content = ''; 
-
-  
-
-  switch (block1) { 
-
-    case 1: 
-
-      block1Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block1Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block2) { 
-
-    case 1: 
-
-      block2Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block2Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block3) { 
-
-    case 1: 
-
-      block3Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block3Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block4) { 
-
-    case 1: 
-
-      block4Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block4Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block5) { 
-
-    case 1: 
-
-      block5Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block5Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block6) { 
-
-    case 1: 
-
-      block6Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block6Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block7) { 
-
-    case 1: 
-
-      block7Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block7Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block8) { 
-
-    case 1: 
-
-      block8Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block8Content = 'O'; 
-
-      break; 
-
-  } 
-
-  
-
-  switch (block9) { 
-
-    case 1: 
-
-      block9Content = 'X'; 
-
-      break; 
-
-    case 2: 
-
-      block9Content = 'O'; 
-
-      break; 
-
-  } 
+  ]); 
 
   
 
   const handlePress = (index: number) => { 
 
-    console.log(`Cell ${index} pressed`); 
+    if (blocks[index] !== '') { 
+
+      return; 
+
+    } 
+
+  
+
+    const newBlocks = [...blocks]; 
 
   
 
     if (player1Turn) { 
 
-      setBlock1(1); 
+      newBlocks[index] = 'X'; 
 
     } else { 
 
-      setBlock1(2); 
+      newBlocks[index] = 'O'; 
 
     } 
 
   
+
+    setBlocks(newBlocks); 
 
     setPlayer1Turn(!player1Turn); 
 
@@ -244,6 +84,8 @@ export default function GameScreen({ route }: any) {
 
     <View style={styles.container}> 
 
+  
+
       <Text style={styles.title}> 
 
         {player1} vs. {player2} 
@@ -254,13 +96,19 @@ export default function GameScreen({ route }: any) {
 
       <Text style={styles.turnText}> 
 
-        {player1Turn ? `${player1}'s Turn` : `${player2}'s Turn`} 
+        {player1Turn 
+
+          ? `${player1}'s Turn` 
+
+          : `${player2}'s Turn`} 
 
       </Text> 
 
   
 
       <View style={styles.row}> 
+
+  
 
         <TouchableHighlight 
 
@@ -270,7 +118,11 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block1Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[0]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
@@ -284,7 +136,11 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block2Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[1]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
@@ -298,15 +154,23 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block3Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[2]} 
+
+          </Text> 
 
         </TouchableHighlight> 
+
+  
 
       </View> 
 
   
 
       <View style={styles.row}> 
+
+  
 
         <TouchableHighlight 
 
@@ -316,7 +180,11 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block4Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[3]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
@@ -330,7 +198,11 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block5Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[4]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
@@ -344,15 +216,23 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block6Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[5]} 
+
+          </Text> 
 
         </TouchableHighlight> 
+
+  
 
       </View> 
 
   
 
       <View style={styles.row}> 
+
+  
 
         <TouchableHighlight 
 
@@ -362,7 +242,11 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block7Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[6]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
@@ -376,7 +260,11 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block8Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[7]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
@@ -390,11 +278,19 @@ export default function GameScreen({ route }: any) {
 
         > 
 
-          <Text style={styles.cellText}>{block9Content}</Text> 
+          <Text style={styles.cellText}> 
+
+            {blocks[8]} 
+
+          </Text> 
 
         </TouchableHighlight> 
 
+  
+
       </View> 
+
+  
 
     </View> 
 
