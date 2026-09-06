@@ -1,22 +1,44 @@
 import { useState } from 'react'; 
 
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native'; 
-
   
 
-// NavigationContainer wraps the whole app and manages navigation state 
+import { 
+
+  View, 
+
+  Text, 
+
+  TextInput, 
+
+  Button, 
+
+  StyleSheet, 
+
+  TouchableHighlight, 
+
+} from 'react-native'; 
+
+  
 
 import { NavigationContainer } from '@react-navigation/native'; 
-
-  
-
-// createNativeStackNavigator builds a stack-based navigator 
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
 
   
 
+  
+
+// Create the navigation stack 
+
 const Stack = createNativeStackNavigator(); 
+
+  
+
+  
+
+
+
+// APP //  
 
   
 
@@ -25,6 +47,8 @@ export default function App() {
   return ( 
 
     <NavigationContainer> 
+
+  
 
       <Stack.Navigator initialRouteName="Home"> 
 
@@ -52,6 +76,8 @@ export default function App() {
 
       </Stack.Navigator> 
 
+  
+
     </NavigationContainer> 
 
   ); 
@@ -60,13 +86,20 @@ export default function App() {
 
   
 
+  
+
+
+// PLAYER SCREEN // 
+
+  
+
 function PlayerScreen({ navigation }: any) { 
 
   
 
-  const [player1, setPlayer1] = useState<string>(''); 
+  const [player1, setPlayer1] = useState(''); 
 
-  const [player2, setPlayer2] = useState<string>(''); 
+  const [player2, setPlayer2] = useState(''); 
 
   
 
@@ -84,6 +117,8 @@ function PlayerScreen({ navigation }: any) {
 
   
 
+  
+
       <TextInput 
 
         placeholder="Player 1 Name" 
@@ -95,6 +130,8 @@ function PlayerScreen({ navigation }: any) {
         style={styles.input} 
 
       /> 
+
+  
 
   
 
@@ -112,6 +149,8 @@ function PlayerScreen({ navigation }: any) {
 
   
 
+  
+
       <Button 
 
         title="Start Game" 
@@ -122,7 +161,7 @@ function PlayerScreen({ navigation }: any) {
 
             player1: player1, 
 
-            player2: player2 
+            player2: player2, 
 
           }) 
 
@@ -139,6 +178,12 @@ function PlayerScreen({ navigation }: any) {
 } 
 
   
+
+  
+
+
+
+// GAME SCREEN // 
 
 function GameScreen({ navigation, route }: any) { 
 
@@ -162,11 +207,141 @@ function GameScreen({ navigation, route }: any) {
 
   
 
+  
+
+      {/* ROW 1  */} 
+
+  
+
+      <View style={styles.row}> 
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+      </View> 
+
+  
+
+  
+
+      {/* ROW 2 */} 
+
+  
+
+      <View style={styles.row}> 
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+      </View> 
+
+  
+
+  
+
+      {/*ROW 3  */} 
+
+  
+
+      <View style={styles.row}> 
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+  
+
+        <TouchableHighlight style={styles.cell}> 
+
+          <Text style={styles.cellText}></Text> 
+
+        </TouchableHighlight> 
+
+  
+
+      </View> 
+
+  
+
     </View> 
 
   ); 
 
 } 
+
+  
+
+// STYLES //
 
   
 
@@ -190,6 +365,8 @@ const styles = StyleSheet.create({
 
   
 
+  
+
   title: { 
 
     fontSize: 24, 
@@ -199,6 +376,8 @@ const styles = StyleSheet.create({
     marginVertical: 12, 
 
   }, 
+
+  
 
   
 
@@ -220,4 +399,48 @@ const styles = StyleSheet.create({
 
   
 
-}); 
+  
+
+  row: { 
+
+    flexDirection: 'row', 
+
+  }, 
+
+  
+
+  
+
+  cell: { 
+
+    width: 80, 
+
+    height: 80, 
+
+    borderWidth: 1, 
+
+    borderColor: '#333', 
+
+    justifyContent: 'center', 
+
+    alignItems: 'center', 
+
+    margin: 2, 
+
+  }, 
+
+  
+
+  
+
+  cellText: { 
+
+    fontSize: 40, 
+
+    fontWeight: 'bold', 
+
+  }, 
+
+  
+
+});
