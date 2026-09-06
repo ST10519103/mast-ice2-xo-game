@@ -12,8 +12,6 @@ import {
 
   TouchableHighlight, 
 
-  Button, 
-
 } from 'react-native'; 
 
   
@@ -28,31 +26,125 @@ export default function GameScreen({ route }: any) {
 
   
 
-  const [blocks, setBlocks] = useState([ 
+  const [block1, setBlock1] = useState(0); 
 
-    '', 
+  const [block2, setBlock2] = useState(0); 
 
-    '', 
+  const [block3, setBlock3] = useState(0); 
 
-    '', 
+  const [block4, setBlock4] = useState(0); 
 
-    '', 
+  const [block5, setBlock5] = useState(0); 
 
-    '', 
+  const [block6, setBlock6] = useState(0); 
 
-    '', 
+  const [block7, setBlock7] = useState(0); 
 
-    '', 
+  const [block8, setBlock8] = useState(0); 
 
-    '', 
-
-  ]); 
+  const [block9, setBlock9] = useState(0); 
 
   
 
-  const handlePress = (index: number) => { 
+  const contentFor = (block: number) => { 
 
-    if (blocks[index] !== '') { 
+    switch (block) { 
+
+      case 1: 
+
+        return 'X'; 
+
+      case 2: 
+
+        return 'O'; 
+
+      default: 
+
+        return ''; 
+
+    } 
+
+  }; 
+
+  
+
+  let winner = 0; 
+
+  
+
+  if (block1 > 0 && block1 === block2 && block2 === block3) { 
+
+    winner = block1; 
+
+  } 
+
+  
+
+  if (block4 > 0 && block4 === block5 && block5 === block6) { 
+
+    winner = block4; 
+
+  } 
+
+  
+
+  if (block7 > 0 && block7 === block8 && block8 === block9) { 
+
+    winner = block7; 
+
+  } 
+
+  
+
+  if (block1 > 0 && block1 === block4 && block4 === block7) { 
+
+    winner = block1; 
+
+  } 
+
+  
+
+  if (block2 > 0 && block2 === block5 && block5 === block8) { 
+
+    winner = block2; 
+
+  } 
+
+  
+
+  if (block3 > 0 && block3 === block6 && block6 === block9) { 
+
+    winner = block3; 
+
+  } 
+
+  
+
+  if (block1 > 0 && block1 === block5 && block5 === block9) { 
+
+    winner = block1; 
+
+  } 
+
+  
+
+  if (block3 > 0 && block3 === block5 && block5 === block7) { 
+
+    winner = block3; 
+
+  } 
+
+  
+
+  const handlePress = ( 
+
+    block: number, 
+
+    setBlock: (value: number) => void 
+
+  ) => { 
+
+    if (winner !== 0) { 
 
       return; 
 
@@ -60,195 +152,27 @@ export default function GameScreen({ route }: any) {
 
   
 
-    const newBlocks = [...blocks]; 
+    if (block !== 0) { 
 
-  
-
-    if (player1Turn) { 
-
-      newBlocks[index] = 'X'; 
-
-    } else { 
-
-      newBlocks[index] = 'O'; 
+      return; 
 
     } 
 
   
 
-    setBlocks(newBlocks); 
+    if (player1Turn) { 
+
+      setBlock(1); 
+
+    } else { 
+
+      setBlock(2); 
+
+    } 
+
+  
 
     setPlayer1Turn(!player1Turn); 
-
-  }; 
-
-  
-
-  let winner = ''; 
-
-  
-
-  if ( 
-
-    blocks[0] !== '' && 
-
-    blocks[0] === blocks[1] && 
-
-    blocks[1] === blocks[2] 
-
-  ) { 
-
-    winner = blocks[0]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[3] !== '' && 
-
-    blocks[3] === blocks[4] && 
-
-    blocks[4] === blocks[5] 
-
-  ) { 
-
-    winner = blocks[3]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[6] !== '' && 
-
-    blocks[6] === blocks[7] && 
-
-    blocks[7] === blocks[8] 
-
-  ) { 
-
-    winner = blocks[6]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[0] !== '' && 
-
-    blocks[0] === blocks[3] && 
-
-    blocks[3] === blocks[6] 
-
-  ) { 
-
-    winner = blocks[0]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[1] !== '' && 
-
-    blocks[1] === blocks[4] && 
-
-    blocks[4] === blocks[7] 
-
-  ) { 
-
-    winner = blocks[1]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[2] !== '' && 
-
-    blocks[2] === blocks[5] && 
-
-    blocks[5] === blocks[8] 
-
-  ) { 
-
-    winner = blocks[2]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[0] !== '' && 
-
-    blocks[0] === blocks[4] && 
-
-    blocks[4] === blocks[8] 
-
-  ) { 
-
-    winner = blocks[0]; 
-
-  } 
-
-  
-
-  if ( 
-
-    blocks[2] !== '' && 
-
-    blocks[2] === blocks[4] && 
-
-    blocks[4] === blocks[6] 
-
-  ) { 
-
-    winner = blocks[2]; 
-
-  } 
-
-  
-
-  const boardFull = blocks.every((block) => block !== ''); 
-
-  
-
-  const draw = boardFull && winner === ''; 
-
-  
-
-  const newGame = () => { 
-
-    setBlocks([ 
-
-      '', 
-
-      '', 
-
-      '', 
-
-      '', 
-
-      '', 
-
-      '', 
-
-      '', 
-
-      '', 
-
-    ]); 
-
-  
-
-    setPlayer1Turn(true); 
 
   }; 
 
@@ -268,19 +192,15 @@ export default function GameScreen({ route }: any) {
 
   
 
-      {!winner && !draw && ( 
+      <Text style={styles.turnText}> 
 
-        <Text style={styles.turnText}> 
+        {player1Turn 
 
-          {player1Turn 
+          ? `${player1}'s Turn` 
 
-            ? `${player1}'s Turn` 
+          : `${player2}'s Turn`} 
 
-            : `${player2}'s Turn`} 
-
-        </Text> 
-
-      )} 
+      </Text> 
 
   
 
@@ -296,15 +216,13 @@ export default function GameScreen({ route }: any) {
 
             style={styles.cell} 
 
-            onPress={() => handlePress(0)} 
-
-            disabled={winner !== '' || draw} 
+            onPress={() => handlePress(block1, setBlock1)} 
 
           > 
 
             <Text style={styles.cellText}> 
 
-              {blocks[0]} 
+              {contentFor(block1)} 
 
             </Text> 
 
@@ -316,15 +234,13 @@ export default function GameScreen({ route }: any) {
 
             style={styles.cell} 
 
-            onPress={() => handlePress(1)} 
-
-            disabled={winner !== '' || draw} 
+            onPress={() => handlePress(block2, setBlock2)} 
 
           > 
 
             <Text style={styles.cellText}> 
 
-              {blocks[1]} 
+              {contentFor(block2)} 
 
             </Text> 
 
@@ -336,83 +252,13 @@ export default function GameScreen({ route }: any) {
 
             style={styles.cell} 
 
-            onPress={() => handlePress(2)} 
-
-            disabled={winner !== '' || draw} 
+            onPress={() => handlePress(block3, setBlock3)} 
 
           > 
 
             <Text style={styles.cellText}> 
 
-              {blocks[2]} 
-
-            </Text> 
-
-          </TouchableHighlight> 
-
-  
-
-        </View> 
-
-  
-
-        <View style={styles.row}> 
-
-  
-
-          <TouchableHighlight 
-
-            style={styles.cell} 
-
-            onPress={() => handlePress(3)} 
-
-            disabled={winner !== '' || draw} 
-
-          > 
-
-            <Text style={styles.cellText}> 
-
-              {blocks[3]} 
-
-            </Text> 
-
-          </TouchableHighlight> 
-
-  
-
-          <TouchableHighlight 
-
-            style={styles.cell} 
-
-            onPress={() => handlePress(4)} 
-
-            disabled={winner !== '' || draw} 
-
-          > 
-
-            <Text style={styles.cellText}> 
-
-              {blocks[4]} 
-
-            </Text> 
-
-          </TouchableHighlight> 
-
-  
-
-          <TouchableHighlight 
-
-            style={styles.cell} 
-
-            onPress={() => handlePress(5)} 
-
-            disabled={winner !== '' || draw} 
-
-          > 
-
-            <Text style={styles.cellText}> 
-
-              {blocks[5]} 
+              {contentFor(block3)} 
 
             </Text> 
 
@@ -432,15 +278,13 @@ export default function GameScreen({ route }: any) {
 
             style={styles.cell} 
 
-            onPress={() => handlePress(6)} 
-
-            disabled={winner !== '' || draw} 
+            onPress={() => handlePress(block4, setBlock4)} 
 
           > 
 
             <Text style={styles.cellText}> 
 
-              {blocks[6]} 
+              {contentFor(block4)} 
 
             </Text> 
 
@@ -452,15 +296,13 @@ export default function GameScreen({ route }: any) {
 
             style={styles.cell} 
 
-            onPress={() => handlePress(7)} 
-
-            disabled={winner !== '' || draw} 
+            onPress={() => handlePress(block5, setBlock5)} 
 
           > 
 
             <Text style={styles.cellText}> 
 
-              {blocks[7]} 
+              {contentFor(block5)} 
 
             </Text> 
 
@@ -472,15 +314,75 @@ export default function GameScreen({ route }: any) {
 
             style={styles.cell} 
 
-            onPress={() => handlePress(8)} 
-
-            disabled={winner !== '' || draw} 
+            onPress={() => handlePress(block6, setBlock6)} 
 
           > 
 
             <Text style={styles.cellText}> 
 
-              {blocks[8]} 
+              {contentFor(block6)} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+        </View> 
+
+  
+
+        <View style={styles.row}> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(block7, setBlock7)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {contentFor(block7)} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(block8, setBlock8)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {contentFor(block8)} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(block9, setBlock9)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {contentFor(block9)} 
 
             </Text> 
 
@@ -496,9 +398,9 @@ export default function GameScreen({ route }: any) {
 
   
 
-      {winner === 'X' && ( 
+      {winner === 1 && ( 
 
-        <Text style={styles.resultText}> 
+        <Text style={styles.winnerText}> 
 
           {player1} Wins! 
 
@@ -508,43 +410,13 @@ export default function GameScreen({ route }: any) {
 
   
 
-      {winner === 'O' && ( 
+      {winner === 2 && ( 
 
-        <Text style={styles.resultText}> 
+        <Text style={styles.winnerText}> 
 
           {player2} Wins! 
 
         </Text> 
-
-      )} 
-
-  
-
-      {draw && ( 
-
-        <Text style={styles.resultText}> 
-
-          It's a Draw! 
-
-        </Text> 
-
-      )} 
-
-  
-
-      {(winner !== '' || draw) && ( 
-
-        <View style={styles.buttonContainer}> 
-
-          <Button 
-
-            title="New Game" 
-
-            onPress={newGame} 
-
-          /> 
-
-        </View> 
 
       )} 
 
@@ -559,8 +431,6 @@ export default function GameScreen({ route }: any) {
   
 
 const styles = StyleSheet.create({ 
-
-  
 
   container: { 
 
@@ -600,19 +470,11 @@ const styles = StyleSheet.create({
 
   
 
-  resultText: { 
+  winnerText: { 
 
     fontSize: 24, 
 
     fontWeight: 'bold', 
-
-    marginTop: 20, 
-
-  }, 
-
-  
-
-  buttonContainer: { 
 
     marginTop: 20, 
 
@@ -655,7 +517,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
 
   }, 
-
-  
 
 }); 
