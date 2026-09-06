@@ -1,7 +1,5 @@
 import { useState } from 'react'; 
 
-  
-
 import { 
 
   View, 
@@ -26,19 +24,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
   
 
-  
-
-// Create the navigation stack 
-
 const Stack = createNativeStackNavigator(); 
-
-  
-
-  
-
-
-
-// APP //  
 
   
 
@@ -47,8 +33,6 @@ export default function App() {
   return ( 
 
     <NavigationContainer> 
-
-  
 
       <Stack.Navigator initialRouteName="Home"> 
 
@@ -76,8 +60,6 @@ export default function App() {
 
       </Stack.Navigator> 
 
-  
-
     </NavigationContainer> 
 
   ); 
@@ -86,16 +68,7 @@ export default function App() {
 
   
 
-  
-
-
-// PLAYER SCREEN // 
-
-  
-
 function PlayerScreen({ navigation }: any) { 
-
-  
 
   const [player1, setPlayer1] = useState(''); 
 
@@ -117,8 +90,6 @@ function PlayerScreen({ navigation }: any) {
 
   
 
-  
-
       <TextInput 
 
         placeholder="Player 1 Name" 
@@ -130,8 +101,6 @@ function PlayerScreen({ navigation }: any) {
         style={styles.input} 
 
       /> 
-
-  
 
   
 
@@ -149,13 +118,11 @@ function PlayerScreen({ navigation }: any) {
 
   
 
-  
-
       <Button 
 
         title="Start Game" 
 
-        onPress={() => 
+        onPress={() => { 
 
           navigation.navigate('Game', { 
 
@@ -163,9 +130,9 @@ function PlayerScreen({ navigation }: any) {
 
             player2: player2, 
 
-          }) 
+          }); 
 
-        } 
+        }} 
 
       /> 
 
@@ -179,17 +146,23 @@ function PlayerScreen({ navigation }: any) {
 
   
 
-  
-
-
-
-// GAME SCREEN // 
-
-function GameScreen({ navigation, route }: any) { 
-
-  
+function GameScreen({ route }: any) { 
 
   const { player1, player2 } = route.params; 
+
+  
+
+  const [player1Turn, setPlayer1Turn] = useState(true); 
+
+  
+
+  const handlePress = (index: number) => { 
+
+    console.log(`Cell ${index} pressed`); 
+
+    setPlayer1Turn(!player1Turn); 
+
+  }; 
 
   
 
@@ -207,9 +180,11 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+      <Text style={styles.turnText}> 
 
-      {/* ROW 1  */} 
+        {player1Turn ? `${player1}'s Turn` : `${player2}'s Turn`} 
+
+      </Text> 
 
   
 
@@ -217,7 +192,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-        <TouchableHighlight style={styles.cell}> 
+        <TouchableHighlight 
+
+          style={styles.cell} 
+
+          onPress={() => handlePress(0)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -225,9 +206,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+        <TouchableHighlight 
 
-        <TouchableHighlight style={styles.cell}> 
+          style={styles.cell} 
+
+          onPress={() => handlePress(1)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -235,9 +220,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+        <TouchableHighlight 
 
-        <TouchableHighlight style={styles.cell}> 
+          style={styles.cell} 
+
+          onPress={() => handlePress(2)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -249,17 +238,17 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
-
-      {/* ROW 2 */} 
-
-  
-
       <View style={styles.row}> 
 
   
 
-        <TouchableHighlight style={styles.cell}> 
+        <TouchableHighlight 
+
+          style={styles.cell} 
+
+          onPress={() => handlePress(3)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -267,9 +256,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+        <TouchableHighlight 
 
-        <TouchableHighlight style={styles.cell}> 
+          style={styles.cell} 
+
+          onPress={() => handlePress(4)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -277,9 +270,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+        <TouchableHighlight 
 
-        <TouchableHighlight style={styles.cell}> 
+          style={styles.cell} 
+
+          onPress={() => handlePress(5)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -291,17 +288,17 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
-
-      {/*ROW 3  */} 
-
-  
-
       <View style={styles.row}> 
 
   
 
-        <TouchableHighlight style={styles.cell}> 
+        <TouchableHighlight 
+
+          style={styles.cell} 
+
+          onPress={() => handlePress(6)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -309,9 +306,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+        <TouchableHighlight 
 
-        <TouchableHighlight style={styles.cell}> 
+          style={styles.cell} 
+
+          onPress={() => handlePress(7)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -319,9 +320,13 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-  
+        <TouchableHighlight 
 
-        <TouchableHighlight style={styles.cell}> 
+          style={styles.cell} 
+
+          onPress={() => handlePress(8)} 
+
+        > 
 
           <Text style={styles.cellText}></Text> 
 
@@ -341,13 +346,7 @@ function GameScreen({ navigation, route }: any) {
 
   
 
-// STYLES //
-
-  
-
 const styles = StyleSheet.create({ 
-
-  
 
   container: { 
 
@@ -365,8 +364,6 @@ const styles = StyleSheet.create({
 
   
 
-  
-
   title: { 
 
     fontSize: 24, 
@@ -378,6 +375,14 @@ const styles = StyleSheet.create({
   }, 
 
   
+
+  turnText: { 
+
+    fontSize: 18, 
+
+    marginBottom: 15, 
+
+  }, 
 
   
 
@@ -399,15 +404,11 @@ const styles = StyleSheet.create({
 
   
 
-  
-
   row: { 
 
     flexDirection: 'row', 
 
   }, 
-
-  
 
   
 
@@ -431,8 +432,6 @@ const styles = StyleSheet.create({
 
   
 
-  
-
   cellText: { 
 
     fontSize: 40, 
@@ -441,6 +440,4 @@ const styles = StyleSheet.create({
 
   }, 
 
-  
-
-});
+}); 
