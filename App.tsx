@@ -1,42 +1,76 @@
-import {  
-
-  View,  
-
-  Text,  
-
-  TextInput,  
-
-  Button,  
-
-  StyleSheet  
-
-} from 'react-native'; 
-
-  
-
 import { useState } from 'react'; 
 
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native'; 
+
   
+
+// NavigationContainer wraps the whole app and manages navigation state 
+
+import { NavigationContainer } from '@react-navigation/native'; 
+
+  
+
+// createNativeStackNavigator builds a stack-based navigator 
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
+
+  
+
+const Stack = createNativeStackNavigator(); 
 
   
 
 export default function App() { 
 
-  
+  return ( 
 
-  // Store player names 
+    <NavigationContainer> 
 
-  const [player1, setPlayer1] = useState(''); 
-
-  const [player2, setPlayer2] = useState(''); 
+      <Stack.Navigator initialRouteName="Home"> 
 
   
+
+        <Stack.Screen 
+
+          name="Home" 
+
+          component={PlayerScreen} 
+
+        /> 
+
+  
+
+        <Stack.Screen 
+
+          name="Game" 
+
+          component={GameScreen} 
+
+        /> 
+
+  
+
+      </Stack.Navigator> 
+
+    </NavigationContainer> 
+
+  ); 
+
+} 
+
+  
+
+function PlayerScreen({ navigation }: any) { 
+
+  
+
+  const [player1, setPlayer1] = useState<string>(''); 
+
+  const [player2, setPlayer2] = useState<string>(''); 
 
   
 
   return ( 
-
-  
 
     <View style={styles.container}> 
 
@@ -44,17 +78,7 @@ export default function App() {
 
       <Text style={styles.title}> 
 
-        Tic Tac Toe 
-
-      </Text> 
-
-  
-
-  
-
-      <Text style={styles.label}> 
-
-        Player 1 Name 
+        Welcome to Tic-Tac-Toe! 
 
       </Text> 
 
@@ -62,41 +86,29 @@ export default function App() {
 
       <TextInput 
 
-        style={styles.input} 
-
-        placeholder="Enter Player 1 name" 
+        placeholder="Player 1 Name" 
 
         value={player1} 
 
         onChangeText={setPlayer1} 
 
+        style={styles.input} 
+
       /> 
-
-  
-
-  
-
-      <Text style={styles.label}> 
-
-        Player 2 Name 
-
-      </Text> 
 
   
 
       <TextInput 
 
-        style={styles.input} 
-
-        placeholder="Enter Player 2 name" 
+        placeholder="Player 2 Name" 
 
         value={player2} 
 
         onChangeText={setPlayer2} 
 
-      /> 
+        style={styles.input} 
 
-  
+      /> 
 
   
 
@@ -104,29 +116,57 @@ export default function App() {
 
         title="Start Game" 
 
-        onPress={() => { 
+        onPress={() => 
 
-          console.log("Player 1:", player1); 
+          navigation.navigate('Game', { 
 
-          console.log("Player 2:", player2); 
+            player1: player1, 
 
-        }} 
+            player2: player2 
+
+          }) 
+
+        } 
 
       /> 
 
   
 
-  
-
     </View> 
-
-  
 
   ); 
 
 } 
 
   
+
+function GameScreen({ navigation, route }: any) { 
+
+  
+
+  const { player1, player2 } = route.params; 
+
+  
+
+  return ( 
+
+    <View style={styles.container}> 
+
+  
+
+      <Text style={styles.title}> 
+
+        {player1} vs. {player2} 
+
+      </Text> 
+
+  
+
+    </View> 
+
+  ); 
+
+} 
 
   
 
@@ -140,41 +180,25 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center', 
 
-    padding: 20, 
+    alignItems: 'center', 
 
-    backgroundColor: '#ffffff' 
+    backgroundColor: '#fff', 
+
+    padding: 16, 
 
   }, 
-
-  
 
   
 
   title: { 
 
-    fontSize: 30, 
+    fontSize: 24, 
 
     fontWeight: 'bold', 
 
-    textAlign: 'center', 
-
-    marginBottom: 40 
+    marginVertical: 12, 
 
   }, 
-
-  
-
-  
-
-  label: { 
-
-    fontSize: 16, 
-
-    marginBottom: 5 
-
-  }, 
-
-  
 
   
 
@@ -182,15 +206,17 @@ const styles = StyleSheet.create({
 
     borderWidth: 1, 
 
-    borderColor: '#777', 
+    borderColor: '#ccc', 
 
-    borderRadius: 8, 
+    paddingHorizontal: 12, 
 
-    padding: 12, 
+    paddingVertical: 8, 
 
-    marginBottom: 25 
+    marginVertical: 8, 
 
-  } 
+    width: '80%', 
+
+  }, 
 
   
 
