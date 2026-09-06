@@ -1,26 +1,24 @@
-import {  
+import { useState } from 'react'; 
 
-  View,  
+  
 
-  Text,  
+import { 
 
-  TextInput,  
+  View, 
 
-  Button,  
+  Text, 
 
-  StyleSheet  
+  TextInput, 
+
+  Button, 
+
+  StyleSheet, 
 
 } from 'react-native'; 
 
   
 
-import { useState } from 'react'; 
-
-  
-
-  
-
-export default function PlayerScreen() { 
+export default function PlayerScreen({ navigation }: any) { 
 
   
 
@@ -30,11 +28,7 @@ export default function PlayerScreen() {
 
   
 
-  
-
   return ( 
-
-  
 
     <View style={styles.container}> 
 
@@ -42,17 +36,7 @@ export default function PlayerScreen() {
 
       <Text style={styles.title}> 
 
-        Tic Tac Toe 
-
-      </Text> 
-
-  
-
-  
-
-      <Text style={styles.label}> 
-
-        Player 1 Name 
+        Welcome to Tic-Tac-Toe! 
 
       </Text> 
 
@@ -60,41 +44,29 @@ export default function PlayerScreen() {
 
       <TextInput 
 
-        style={styles.input} 
-
-        placeholder="Enter Player 1 name" 
+        placeholder="Player 1 Name" 
 
         value={player1} 
 
         onChangeText={setPlayer1} 
 
+        style={styles.input} 
+
       /> 
-
-  
-
-  
-
-      <Text style={styles.label}> 
-
-        Player 2 Name 
-
-      </Text> 
 
   
 
       <TextInput 
 
-        style={styles.input} 
-
-        placeholder="Enter Player 2 name" 
+        placeholder="Player 2 Name" 
 
         value={player2} 
 
         onChangeText={setPlayer2} 
 
-      /> 
+        style={styles.input} 
 
-  
+      /> 
 
   
 
@@ -102,21 +74,23 @@ export default function PlayerScreen() {
 
         title="Start Game" 
 
-        onPress={() => { 
+        onPress={() => 
 
-          console.log(player1, player2); 
+          navigation.navigate('Game', { 
 
-        }} 
+            player1: player1, 
+
+            player2: player2, 
+
+          }) 
+
+        } 
 
       /> 
 
   
 
-  
-
     </View> 
-
-  
 
   ); 
 
@@ -124,68 +98,54 @@ export default function PlayerScreen() {
 
   
 
-  
-
 const styles = StyleSheet.create({ 
 
   
 
-  container:{ 
+  container: { 
 
-    flex:1, 
+    flex: 1, 
 
-    justifyContent:'center', 
+    justifyContent: 'center', 
 
-    padding:20 
+    alignItems: 'center', 
 
-  }, 
+    backgroundColor: '#fff', 
 
-  
-
-  
-
-  title:{ 
-
-    fontSize:30, 
-
-    fontWeight:'bold', 
-
-    textAlign:'center', 
-
-    marginBottom:40 
+    padding: 16, 
 
   }, 
 
   
 
-  
+  title: { 
 
-  label:{ 
+    fontSize: 24, 
 
-    fontSize:16, 
+    fontWeight: 'bold', 
 
-    marginBottom:5 
+    marginVertical: 12, 
 
   }, 
 
   
 
+  input: { 
+
+    borderWidth: 1, 
+
+    borderColor: '#ccc', 
+
+    paddingHorizontal: 12, 
+
+    paddingVertical: 8, 
+
+    marginVertical: 8, 
+
+    width: '80%', 
+
+  }, 
+
   
 
-  input:{ 
-
-    borderWidth:1, 
-
-    borderColor:'#777', 
-
-    borderRadius:8, 
-
-    padding:12, 
-
-    marginBottom:25 
-
-  } 
-
-  
-
-});
+}); 
