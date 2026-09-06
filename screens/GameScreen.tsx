@@ -1,5 +1,7 @@
 import { useState } from 'react'; 
 
+  
+
 import { 
 
   View, 
@@ -80,6 +82,138 @@ export default function GameScreen({ route }: any) {
 
   
 
+  let winner = ''; 
+
+  
+
+  if ( 
+
+    blocks[0] !== '' && 
+
+    blocks[0] === blocks[1] && 
+
+    blocks[1] === blocks[2] 
+
+  ) { 
+
+    winner = blocks[0]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[3] !== '' && 
+
+    blocks[3] === blocks[4] && 
+
+    blocks[4] === blocks[5] 
+
+  ) { 
+
+    winner = blocks[3]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[6] !== '' && 
+
+    blocks[6] === blocks[7] && 
+
+    blocks[7] === blocks[8] 
+
+  ) { 
+
+    winner = blocks[6]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[0] !== '' && 
+
+    blocks[0] === blocks[3] && 
+
+    blocks[3] === blocks[6] 
+
+  ) { 
+
+    winner = blocks[0]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[1] !== '' && 
+
+    blocks[1] === blocks[4] && 
+
+    blocks[4] === blocks[7] 
+
+  ) { 
+
+    winner = blocks[1]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[2] !== '' && 
+
+    blocks[2] === blocks[5] && 
+
+    blocks[5] === blocks[8] 
+
+  ) { 
+
+    winner = blocks[2]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[0] !== '' && 
+
+    blocks[0] === blocks[4] && 
+
+    blocks[4] === blocks[8] 
+
+  ) { 
+
+    winner = blocks[0]; 
+
+  } 
+
+  
+
+  if ( 
+
+    blocks[2] !== '' && 
+
+    blocks[2] === blocks[4] && 
+
+    blocks[4] === blocks[6] 
+
+  ) { 
+
+    winner = blocks[2]; 
+
+  } 
+
+  
+
   return ( 
 
     <View style={styles.container}> 
@@ -106,61 +240,193 @@ export default function GameScreen({ route }: any) {
 
   
 
-      <View style={styles.row}> 
+      <View> 
 
   
 
-        <TouchableHighlight 
-
-          style={styles.cell} 
-
-          onPress={() => handlePress(0)} 
-
-        > 
-
-          <Text style={styles.cellText}> 
-
-            {blocks[0]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
+        <View style={styles.row}> 
 
   
 
-        <TouchableHighlight 
+          <TouchableHighlight 
 
-          style={styles.cell} 
+            style={styles.cell} 
 
-          onPress={() => handlePress(1)} 
+            onPress={() => handlePress(0)} 
 
-        > 
+          > 
 
-          <Text style={styles.cellText}> 
+            <Text style={styles.cellText}> 
 
-            {blocks[1]} 
+              {blocks[0]} 
 
-          </Text> 
+            </Text> 
 
-        </TouchableHighlight> 
+          </TouchableHighlight> 
 
   
 
-        <TouchableHighlight 
+          <TouchableHighlight 
 
-          style={styles.cell} 
+            style={styles.cell} 
 
-          onPress={() => handlePress(2)} 
+            onPress={() => handlePress(1)} 
 
-        > 
+          > 
 
-          <Text style={styles.cellText}> 
+            <Text style={styles.cellText}> 
 
-            {blocks[2]} 
+              {blocks[1]} 
 
-          </Text> 
+            </Text> 
 
-        </TouchableHighlight> 
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(2)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[2]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+        </View> 
+
+  
+
+        <View style={styles.row}> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(3)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[3]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(4)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[4]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(5)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[5]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+        </View> 
+
+  
+
+        <View style={styles.row}> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(6)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[6]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(7)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[7]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+          <TouchableHighlight 
+
+            style={styles.cell} 
+
+            onPress={() => handlePress(8)} 
+
+          > 
+
+            <Text style={styles.cellText}> 
+
+              {blocks[8]} 
+
+            </Text> 
+
+          </TouchableHighlight> 
+
+  
+
+        </View> 
 
   
 
@@ -168,127 +434,27 @@ export default function GameScreen({ route }: any) {
 
   
 
-      <View style={styles.row}> 
+      {winner === 'X' && ( 
+
+        <Text style={styles.winnerText}> 
+
+          {player1} Wins! 
+
+        </Text> 
+
+      )} 
 
   
 
-        <TouchableHighlight 
+      {winner === 'O' && ( 
 
-          style={styles.cell} 
+        <Text style={styles.winnerText}> 
 
-          onPress={() => handlePress(3)} 
+          {player2} Wins! 
 
-        > 
+        </Text> 
 
-          <Text style={styles.cellText}> 
-
-            {blocks[3]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
-
-  
-
-        <TouchableHighlight 
-
-          style={styles.cell} 
-
-          onPress={() => handlePress(4)} 
-
-        > 
-
-          <Text style={styles.cellText}> 
-
-            {blocks[4]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
-
-  
-
-        <TouchableHighlight 
-
-          style={styles.cell} 
-
-          onPress={() => handlePress(5)} 
-
-        > 
-
-          <Text style={styles.cellText}> 
-
-            {blocks[5]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
-
-  
-
-      </View> 
-
-  
-
-      <View style={styles.row}> 
-
-  
-
-        <TouchableHighlight 
-
-          style={styles.cell} 
-
-          onPress={() => handlePress(6)} 
-
-        > 
-
-          <Text style={styles.cellText}> 
-
-            {blocks[6]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
-
-  
-
-        <TouchableHighlight 
-
-          style={styles.cell} 
-
-          onPress={() => handlePress(7)} 
-
-        > 
-
-          <Text style={styles.cellText}> 
-
-            {blocks[7]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
-
-  
-
-        <TouchableHighlight 
-
-          style={styles.cell} 
-
-          onPress={() => handlePress(8)} 
-
-        > 
-
-          <Text style={styles.cellText}> 
-
-            {blocks[8]} 
-
-          </Text> 
-
-        </TouchableHighlight> 
-
-  
-
-      </View> 
+      )} 
 
   
 
@@ -301,6 +467,8 @@ export default function GameScreen({ route }: any) {
   
 
 const styles = StyleSheet.create({ 
+
+  
 
   container: { 
 
@@ -335,6 +503,18 @@ const styles = StyleSheet.create({
     fontSize: 18, 
 
     marginBottom: 15, 
+
+  }, 
+
+  
+
+  winnerText: { 
+
+    fontSize: 24, 
+
+    fontWeight: 'bold', 
+
+    marginTop: 20, 
 
   }, 
 
@@ -375,5 +555,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
 
   }, 
+
+  
 
 }); 
