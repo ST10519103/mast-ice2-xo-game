@@ -12,6 +12,8 @@ import {
 
   TouchableHighlight, 
 
+  Button, 
+
 } from 'react-native'; 
 
   
@@ -219,6 +221,36 @@ export default function GameScreen({ route }: any) {
   
 
   const draw = boardFull && winner === ''; 
+
+  
+
+  const newGame = () => { 
+
+    setBlocks([ 
+
+      '', 
+
+      '', 
+
+      '', 
+
+      '', 
+
+      '', 
+
+      '', 
+
+      '', 
+
+      '', 
+
+    ]); 
+
+  
+
+    setPlayer1Turn(true); 
+
+  }; 
 
   
 
@@ -500,6 +532,24 @@ export default function GameScreen({ route }: any) {
 
   
 
+      {(winner !== '' || draw) && ( 
+
+        <View style={styles.buttonContainer}> 
+
+          <Button 
+
+            title="New Game" 
+
+            onPress={newGame} 
+
+          /> 
+
+        </View> 
+
+      )} 
+
+  
+
     </View> 
 
   ); 
@@ -555,6 +605,14 @@ const styles = StyleSheet.create({
     fontSize: 24, 
 
     fontWeight: 'bold', 
+
+    marginTop: 20, 
+
+  }, 
+
+  
+
+  buttonContainer: { 
 
     marginTop: 20, 
 
